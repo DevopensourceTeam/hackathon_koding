@@ -1,3 +1,5 @@
+var socket = io.connect();
+
 $( document ).ready(function() {
     $("#sendusername").on( "click", function() {
         var username = $("#username").val();
@@ -29,6 +31,6 @@ $( document ).ready(function() {
     // Listener
     socket.on(channel+'_room', function (data) {
         console.log(data);
-        //socket.emit('my other event', { my: 'data' });
+        socket.emit(channel+'_room', { username: username, area: 'monitor' });
     });
 });

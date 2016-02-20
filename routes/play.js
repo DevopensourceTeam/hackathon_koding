@@ -6,6 +6,9 @@ router.get('/', function(req, res, next) {
     var qr = require('qr-image');
 
     var hash = Math.random().toString(36).slice(-4);
+
+    hash = '79zfr';
+
     var hostname = req.headers.host;
     var url = "http://"+hostname+"/play/"+hash;
     var urlct = url+"/ct";
@@ -34,21 +37,26 @@ router.get('/:hash', function(req, res, next) {
      */
     io.on('connection', function (socket) {
 
-        console.log('created monitor!!!');
+      console.log('created monitor!!!');
 
-      socket.emit('news', { hello: 'world' });
-
-      socket.on('my other event', function (data) {
-        console.log(data);
-      });
+      // socket.emit('news', { hello: 'world' });
+      //
+      // socket.on('my other event', function (data) {
+      //   console.log(data);
+      // });
 
       socket.on(hash+'_room', function (data) {
           console.log('user connected!!');
-        console.log(data);
+          console.log(data);
+
+          socket.emit(hash+'_room', { hello: 'action for monitor' });
+      //  if(  data.area == 'monitor'){
+      //    socket.emit(hash+'_room_monitor', { hello: 'action for monitor' });
+      //    }
       });
     });
 
-      res.render('monitor', { title: 'Play'});
+      res.render('monitor', { title: 'Play', hash: hash});
 });
 
 module.exports = router;
