@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/play', function(req, res, next) {
+router.get('/', function(req, res, next) {
     var qr = require('qr-image');
 
     var hash = Math.random().toString(36).slice(-5);
@@ -16,13 +16,14 @@ router.get('/play', function(req, res, next) {
 });
 
 
-router.get('/play/:hash/ct', function(req, res, next) {
+router.get('/:hash/ct', function(req, res, next) {
     var hash = req.params.hash;
     console.log(hash);
 });
 
-router.get('/play/:hash', function(req, res, next) {
+router.get('/:hash', function(req, res, next) {
     var hash = req.params.hash;
     console.log(hash);
 });
+
 module.exports = router;
