@@ -4,7 +4,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     var qr = require('qr-image');
 
-    var hash = Math.random().toString(36).slice(-5);
+    var hash = Math.random().toString(36).slice(-4);
     var hostname = req.headers.host;
     var url = "http://"+hostname+"/play/"+hash;
     var urlct = url+"/ct";
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:hash/ct', function(req, res, next) {
     var hash = req.params.hash;
-    console.log(hash);
+    res.render('controller', { title: 'Controller', hash: hash});
 });
 
 router.get('/:hash', function(req, res, next) {
