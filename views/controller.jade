@@ -7,10 +7,24 @@ html
     script(src='/javascripts/jquery-1.12.0.min.js')
     script(src='/scripts/app.js')
     script(src='/scripts/controller.js')
+    meta(name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;")
   body
     block content
         script.
           var channel = '#{hash}';
-      label(for=username) Username
-      input#username
-      a#sendusername(href='#') OK
+        div#init
+            label(for=username) Username
+            input#username
+            a#sendusername(href='#') OK
+        div#game.hidden
+            div#header
+                span Username 2450
+            div#controls
+                div#button-1.quizzbutton.blue
+                    span Blue
+                div#button-2.quizzbutton.orange
+                    span Orange
+                div#button-3.quizzbutton.green
+                    span Green
+                div#button-4.quizzbutton.red
+                    span Red
