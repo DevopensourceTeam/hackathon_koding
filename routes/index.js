@@ -19,4 +19,10 @@ router.get('/play', function(req, res, next) {
 });
 
 
+router.get('/play/:hash/ct', function(req, res, next) {
+    var hash = req.params.hash;
+    console.log(hash);
+});
+
+
 module.exports = router;
