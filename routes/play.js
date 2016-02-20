@@ -30,7 +30,7 @@ router.get('/:hash/ct', function(req, res, next) {
 router.get('/:hash', function(req, res, next) {
     var hash = req.params.hash;
 
-    console.log(hash);
+    console.log('channel '+hash);
 
     /**
      * Listener
@@ -49,13 +49,14 @@ router.get('/:hash', function(req, res, next) {
           console.log('user connected!!');
           console.log(data);
 
-          socket.emit(hash+'_room', { hello: 'action for monitor' });
+        //  socket.emit(hash+'_room', { hello: 'action for monitor' });
+          socket.emit(hash+'_room_monitor', { hello: 'action for monitor' });
       //  if(  data.area == 'monitor'){
       //    socket.emit(hash+'_room_monitor', { hello: 'action for monitor' });
       //    }
       });
-    });
 
+    });
       res.render('monitor', { title: 'Play', hash: hash});
 });
 
