@@ -10,17 +10,10 @@ router.get('/', function(req, res, next) {
   //  hash = 'flxr';
     hash.toLowerCase();
 
-
     var hostname = req.headers.host;
-<<<<<<< HEAD:routes/play.js
     var domainurl = "http://"+hostname+"/";
-    var url = "http://"+hostname+"/play/"+hash;
-    var urlct = "http://"+hostname+"/play/ct/"+hash;
-=======
     var url = "http://"+hostname+"/game-quizz/"+hash;
-    var currentlocation = "http://"+hostname+"/game-quizz/";
     var urlct = "http://"+hostname+"/game-quizz/ct/"+hash;
->>>>>>> change url controller:routes/gamequizz.js
     var qr_png = qr.imageSync(urlct, { type: 'png' });
     var qr_str = "data:image/png;base64," + qr_png.toString('base64');
 
