@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-// Route /play
+// Route /game-quizz
 router.get('/', function(req, res, next) {
 
     var qr = require('qr-image');
@@ -12,9 +12,15 @@ router.get('/', function(req, res, next) {
 
 
     var hostname = req.headers.host;
+<<<<<<< HEAD:routes/play.js
     var domainurl = "http://"+hostname+"/";
     var url = "http://"+hostname+"/play/"+hash;
     var urlct = "http://"+hostname+"/play/ct/"+hash;
+=======
+    var url = "http://"+hostname+"/game-quizz/"+hash;
+    var currentlocation = "http://"+hostname+"/game-quizz/";
+    var urlct = "http://"+hostname+"/game-quizz/ct/"+hash;
+>>>>>>> change url controller:routes/gamequizz.js
     var qr_png = qr.imageSync(urlct, { type: 'png' });
     var qr_str = "data:image/png;base64," + qr_png.toString('base64');
 
@@ -198,10 +204,10 @@ router.get('/', function(req, res, next) {
         });
     });
 
-    res.render('play', { title: 'Play', urlct: urlct,url:url ,qr:qr_str,hash:hash,domainurl:domainurl});
+    res.render('gamequizz', { title: 'Game Quizz', urlct: urlct,url:url ,qr:qr_str,hash:hash,domainurl:domainurl});
 });
 
-// Route /play/ct/ia4i
+// Route /game-quizz/ct/ia4i
 router.get('/ct/:hash', function(req, res, next) {
     console.log('Route controller');
     var hash = req.params.hash;
@@ -217,7 +223,7 @@ router.get('/ct/:hash', function(req, res, next) {
     res.render('controller', { title: 'Controller', hash: hash, avatar:avatar});
 });
 
-// Route /play/ia4i
+// Route /game-quizz/ia4i
 router.get('/:hash', function(req, res, next) {
 
     console.log('Monitor controller');
