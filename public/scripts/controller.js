@@ -6,7 +6,7 @@ $( document ).ready(function() {
 
         console.log(username);
         if (username) {
-            socket.emit(channel+'_room', { username: username });
+            socket.emit('adduser', {username:username,room:channel});
             $("#init").hide();
             $("#game").show();
         }
@@ -28,9 +28,17 @@ $( document ).ready(function() {
         socket.emit(channel+'_room', { username: username, push:4 });
     });
 
-    // Listener
-    socket.on(channel+'_room', function (data) {
-        console.log(data);
-        socket.emit(channel+'_room', { username: username, area: 'monitor' });
+    // listener, whenever the server emits 'updatechat', this updates the chat body
+    socket.on('updatecommand', function (username, data) {
+        console.log(username,data);
     });
+
+    // listener, whenever the server emits 'updateusers', this updates the username list
+    socket.on('updateusers', function(data) {
+        $('#users').empty();
+        $.each(data, function(key, value) {
+            console.log(key);
+        });
+    });
+
 });

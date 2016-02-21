@@ -1,12 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    script.
+        var channel = '#{hash}';
+    h1= title
+        p Welcome to #{title}
 
-  img(src='#{qr}')
-  p #{urlct}
+    img(src='#{qr}')
+    p #{urlct}
 
 
 
-  a#gotoplay(href='#{url}') Start to play
+    a#gotoplay(href='#{url}') Start to play
