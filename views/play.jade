@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    script(src='/scripts/app.js')
     script.
         var channel = '#{hash}';
     h1= title
@@ -10,5 +11,7 @@ block content
     p #{urlct}
 
 
+    h2 users connected
+    p#users
 
     a#gotoplay(href='#{url}') Start to play
