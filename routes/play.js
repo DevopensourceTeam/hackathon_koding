@@ -31,6 +31,12 @@ router.get('/', function(req, res, next) {
         });
 
         socket.on('sendoption', function (data) {
+
+            // Validation room
+            if(socket.room != hash){
+                return false;
+            }
+
             console.log('SCK: event sendoption');
             console.log(socket.username);
             console.log(data);
@@ -38,7 +44,14 @@ router.get('/', function(req, res, next) {
             socket.broadcast.to(socket.room).emit('updateoption',  socket.username, data);
         });
 
+        // Send answers to gamer
         socket.on('sendanswers', function (data) {
+
+            // Validation room
+            if(socket.room != hash){
+                return false;
+            }
+
             console.log(data);
             socket.broadcast.to(socket.room).emit('getOptionValues', data);
         });
@@ -56,18 +69,19 @@ router.get('/', function(req, res, next) {
 
             console.log(usernames);
 
-            countUsers++;
-
-            // socket
+            // join user to room
             socket.join(socket.room);
             socket.emit('updatecommand', 'SERVER', 'you have connected');
             socket.broadcast.to(hash).emit('updatecommand', 'SERVER', socket.username + ' has connected to this room');
-
 
             io.sockets.emit('updateusers', usernames);
 
             console.log('num users: '+countUsers);
 
+            // Count total users
+            countUsers++;
+
+            // If one user enable play
             if(countUsers == 1){
                 io.sockets.emit('enableplay', true);
             }
