@@ -21,7 +21,6 @@ router.get('/', function(req, res, next) {
     io.sockets.on('connection', function (socket) {
 
         socket.on('sendcommand', function (data) {
-            //console.log(data);
             socket.broadcast.to(socket.room).emit('updatecommand',  socket.username, data);
             socket.emit('updatecommand',  socket.username, data);
         });
@@ -42,6 +41,12 @@ router.get('/', function(req, res, next) {
             socket.broadcast.to(hash).emit('updatecommand', 'SERVER', socket.username + ' has connected to this room');
             io.sockets.emit('updateusers', usernames);
         });
+
+        socket.on('addmonitor', function(room){
+            socket.room = room;
+            socket.join(socket.room);
+        });
+
     });
 
     res.render('play', { title: 'Play', urlct: urlct,url:url ,qr:qr_str,hash:hash});

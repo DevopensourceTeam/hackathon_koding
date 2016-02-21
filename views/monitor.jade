@@ -1,6 +1,9 @@
 extends layout
 
 block content
+  script(src='/scripts/monitor.js')
+  script.
+        var channel = '#{hash}';
   h1= title
   p Monitor
   p monitor of gamers

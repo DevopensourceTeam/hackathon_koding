@@ -1,5 +1,6 @@
 var socket = io.connect();
 var username = "";
+var game = {};
 
 $( document ).ready(function() {
     var audioElement = document.createElement('audio');
@@ -43,4 +44,7 @@ $( document ).ready(function() {
         console.log(data);
     });
 
+    socket.on('getOptionValues', function (data) {
+        console.log(data);
+    });
 });
