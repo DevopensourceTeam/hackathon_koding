@@ -31,13 +31,16 @@ router.get('/', function(req, res, next) {
         });
 
         socket.on('sendoption', function (data) {
-
-
             console.log('SCK: event sendoption');
             console.log(socket.username);
             console.log(data);
             console.log(socket.room);
             socket.broadcast.to(socket.room).emit('updateoption',  socket.username, data);
+        });
+
+        socket.on('sendanswers', function (data) {
+            console.log(data);
+            socket.broadcast.to(socket.room).emit('getOptionValues', data);
         });
 
         // when the client emits 'adduser', this listens and executes
@@ -68,7 +71,6 @@ router.get('/', function(req, res, next) {
             if(countUsers == 1){
                 io.sockets.emit('enableplay', true);
             }
-
         });
 
         socket.on('addmonitor', function(room){
@@ -90,10 +92,25 @@ router.get('/:hash/ct', function(req, res, next) {
 });
 
 router.get('/:hash', function(req, res, next) {
-    console.log('Ruta monitor');
-
     var hash = req.params.hash;
-    res.render('monitor', { title: 'Play', hash: hash});
+    var path = require('path');
+    var json = JSON.parse(require('fs').readFileSync(path.join(__dirname,'..', 'questions/questions.json'), 'utf8'));
+    var questions = json.questions;
+    questions = shuffle(questions);
+    questions = questions.slice(0, 5);
+    res.render('monitor', { title: 'Play', hash: hash, questions:questions});
 });
+
+function shuffle(o) {
+    var j, x, i;
+    for (i = o.length; i; i -= 1) {
+        j = Math.floor(Math.random() * i);
+        x = o[i-1];
+        o[i-1] = o[j];
+        o[j] = x;
+    }
+
+    return o;
+}
 
 module.exports = router;

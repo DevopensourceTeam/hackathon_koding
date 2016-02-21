@@ -46,5 +46,10 @@ $( document ).ready(function() {
 
     socket.on('getOptionValues', function (data) {
         console.log(data);
+        $('div#button-1 span').text(data.option1);
+        $('div#button-2 span').text(data.option2);
+        $('div#button-3 span').text(data.option3);
+        $('div#button-4 span').text(data.option4);
+        console.log(data);
     });
 });

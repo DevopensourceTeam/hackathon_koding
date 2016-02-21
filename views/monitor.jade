@@ -4,11 +4,16 @@ block content
   script(src='/scripts/monitor.js')
   script.
         var channel = '#{hash}';
-  h1= title
-  p Monitor
-  p monitor of gamers
+        var questions = !{JSON.stringify(questions)};
 
-  script.
-    var channel = '#{hash}';
-  p channel= #{hash}
-  script(src='/scripts/app.js')
+  div#question
+    span
+  div#answers
+    div#answer1
+        span
+    div#answer2
+        span
+    div#answer3
+        span
+    div#answer4
+        span
