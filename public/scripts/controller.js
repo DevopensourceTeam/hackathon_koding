@@ -15,6 +15,7 @@ $( document ).ready(function() {
         if (username) {
             socket.emit('adduser', {username:username,room:channel, avatar:avatar});
             audioElement.play();
+            $('#usernameDisplay').html(username+' ');
             $("#init").hide();
             $("#game").show();
         }
