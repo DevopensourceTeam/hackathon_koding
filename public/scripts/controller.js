@@ -10,10 +10,9 @@ $( document ).ready(function() {
     if($.cookie('username')){
         username = $.cookie('username');
         socket.emit('adduser', {username:username,room:channel, avatar:avatar});
-        audioElement.play();
         $('#usernameDisplay').html(username+' ');
         $("#init").hide();
-        $("#game").show();
+        $("#waiting").show();
     }
 
     $("#sendusername").on( "click", function(event) {
@@ -26,11 +25,9 @@ $( document ).ready(function() {
             socket.emit('adduser', {username:username,room:channel, avatar:avatar});
             $.cookie('username', username, { expires: 7, path: '/' });
             $.cookie('avatar', avatar, { expires: 7, path: '/' });
-
-            audioElement.play();
             $('#usernameDisplay').html(username+' ');
             $("#init").hide();
-            $("#game").show();
+            $("#waiting").show();
             enterFullscreen();
         }
 
@@ -116,6 +113,12 @@ $( document ).ready(function() {
     });
 
     socket.on('getOptionValues', function (data) {
+        if($('#game').is(':hidden')){
+            $("#waiting").hide();
+            $("#game").show();
+            audioElement.play();
+        }
+
         console.log(data);
         $('div#button-1 span').text(data.option1);
         $('div#button-2 span').text(data.option2);
