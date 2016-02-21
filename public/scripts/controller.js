@@ -6,7 +6,11 @@ $( document ).ready(function() {
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', audio);
 
-    $("#sendusername").on( "click", function() {
+    $("#sendusername").on( "click", function(event) {
+
+        // Cancel default action click event
+        event.preventDefault();
+
         username = $("#username").val();
         if (username) {
             socket.emit('adduser', {username:username,room:channel, avatar:avatar});
@@ -14,6 +18,8 @@ $( document ).ready(function() {
             $("#init").hide();
             $("#game").show();
         }
+
+
     });
 
     $("#button-1").on( "click", function() {
