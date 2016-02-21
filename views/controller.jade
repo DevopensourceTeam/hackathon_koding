@@ -2,12 +2,15 @@ doctype html
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/controller.css')
     script(src='/socket.io/socket.io.js')
     script(src='/scripts/jquery-1.12.0.min.js')
     script(src='/scripts/jquery.cookie.js')
     script(src='/scripts/controller.js')
     meta(name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;")
+    link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Ubuntu:400,500,400italic')
+    script(src='/scripts/bootstrap/bootstrap.min.js')
   body
     block content
         script.
@@ -15,16 +18,19 @@ html
           var avatar = '#{avatar}';
           var audio = '/sounds/sound_#{avatar}.mp3';
         div#init
-            label(for=username) Username
-            input#username
-            a#sendusername(href='#') OK
-        div#waiting.hidden
-            span You have already been added to the room, waiting for the game start.
-        div#game.hidden
+            div
+                input#username(placeholder="Enter a username")
+                br
+                button#sendusername.btn.btn-lg.btn-primary Join
+        div#waiting.hidden-screen
+            div
+                span You have already been added to the room, waiting for the game start.
+        div#game.hidden-screen
             div#header
+                img(src='/images/avatars/avatar_#{avatar}.png')
                 div
-                    img(src='/images/avatars/avatar_#{avatar}.png')
                     span#usernameDisplay
+                    br
                     span#points 0 points
             div#controls
                 div#button-1.quizzbutton.blue
@@ -35,7 +41,9 @@ html
                     span
                 div#button-4.quizzbutton.red
                     span
-        div#endgame
-            span#position
-            span#points
+        div#endgame.hidden-screen
+            div
+                span#position
+                br
+                span#points
 

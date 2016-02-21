@@ -1,12 +1,48 @@
-html, body, #game{
+html, body, #game, #init, #waiting, #endgame{
     margin: 0px;
     height: 100%;
     width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+
 }
 
-.hidden{
+#init{
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #000;
+    display: table;
+}
+
+#init input, #init button{
+    width: 90%;
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+#init div{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#waiting{
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #000;
+    display: table;
+}
+
+#waiting div{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.hidden-screen{
     display: none;
 }
+
 
 #header{
     display: table;
@@ -18,18 +54,40 @@ html, body, #game{
 #header div{
     display: table-cell;
     vertical-align: middle;
+    width: 100%;
 }
 
 #header span{
     color: #fff;
-    font-family: helvetica;
     font-size: 2em;
-
 }
 
 #controls{
     width: 100%;
     height: 85%;
+}
+
+#endgame{
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+    display: table;
+}
+
+#endgame div{
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #5B7CF3;
+}
+
+#endgame #position{
+    font-size: 25em;
+    color: #fff;
+}
+
+#endgame #points{
+    font-size: 3em;
+    color: #fff;
 }
 
 .quizzbutton{
@@ -47,7 +105,6 @@ html, body, #game{
     color: #fff;
     font-weight: bold;
     display: table-cell;
-    font-family: helvetica;
     font-size: 2.5em;
 }
 
