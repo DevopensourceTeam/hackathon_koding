@@ -8,11 +8,12 @@ router.get('/', function(req, res, next) {
 
     var hash = Math.random().toString(36).slice(-4);
     hash = 'flxr';
+    hash.toLowerCase();
+
 
     var hostname = req.headers.host;
     var url = "http://"+hostname+"/play/"+hash;
     var urlct = "http://"+hostname+"/play/ct/"+hash;
-
     var qr_png = qr.imageSync(urlct, { type: 'png' });
     var qr_str = "data:image/png;base64," + qr_png.toString('base64');
 
@@ -178,6 +179,8 @@ router.get('/', function(req, res, next) {
 router.get('/ct/:hash', function(req, res, next) {
     console.log('Route controller');
     var hash = req.params.hash;
+    hash.toLowerCase();
+
     var avatar = Math.floor(Math.random() * 17) + 1;
     res.render('controller', { title: 'Controller', hash: hash, avatar:avatar});
 });
@@ -186,6 +189,8 @@ router.get('/ct/:hash', function(req, res, next) {
 router.get('/:hash', function(req, res, next) {
     console.log('Monitor controller');
     var hash = req.params.hash;
+    hash.toLowerCase();
+
     var path = require('path');
     var json = JSON.parse(require('fs').readFileSync(path.join(__dirname,'..', 'questions/questions.json'), 'utf8'));
     var questions = json.questions;
@@ -193,6 +198,7 @@ router.get('/:hash', function(req, res, next) {
     questions = questions.slice(0, 10);
     res.render('monitor', { title: 'Play', hash: hash, questions:questions});
 });
+
 
 function shuffle(o) {
     var j, x, i;
