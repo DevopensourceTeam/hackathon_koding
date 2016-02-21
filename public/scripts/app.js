@@ -15,12 +15,13 @@ $( document ).ready(function() {
 
   });
 
-  socket.on('sendquestion', function(question){
-    console.log('SCK: listen client :sendquestion ');
-    console.log(question);
+  socket.on('enableplay', function(game){
+    console.log('SCK: listen client :enableplay ');
+    console.log(game);
 
-    $('#question').text(question);
-
+    if(game){
+        $('#gotoplay').prop("disabled", false);
+    }
 
   });
 });

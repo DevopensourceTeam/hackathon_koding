@@ -61,8 +61,8 @@ router.get('/', function(req, res, next) {
 
             console.log('num users: '+countUsers);
 
-            if(countUsers == 2){
-                io.sockets.emit('sendquestion', '¿Cuantas copas ganó el Madrid?');
+            if(countUsers == 1){
+                io.sockets.emit('enableplay', true);
             }
 
         });
