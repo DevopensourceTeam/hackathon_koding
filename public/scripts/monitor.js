@@ -37,7 +37,12 @@ function startGame(){
 
     socket.on('updateoption', function (username, data) {
         var answereTime = (new Date).getTime() / 1000;
+
+        console.log('answereTime: '+answereTime );
+
         var time = parseFloat(answereTime) - parseFloat(startTime);
+
+        console.log('time: '+time );
 
         console.log(username);
         console.log(time);
@@ -49,16 +54,30 @@ function startGame(){
             }
         }
 
-        pointsToUser = parseInt(time * multPoint);
+        var timeRest = 15 - time;
+
+        console.log('currentQuestion.correct '+ currentQuestion.correct );
+
+        console.log('timeRest: '+timeRest);
+
+        pointsToUser = timeRest * multPoint;
 
         console.log('pointsToUser: '+pointsToUser);
 
         // send points to SERVER
-        if(currentQuestion.correct==data){
+        if(currentQuestion.correct == data){
             //calculate points
             socket.emit('sendpoints', {'points': pointsToUser, 'username':username });
+
+            console.log('correct answer');
+            console.log(username);
+            console.log(pointsToUser);
         }else{
             socket.emit('sendpoints', {'points': reducePoints, 'username':username, 'reduce': true });
+
+            console.log('bad answer');
+            console.log(username);
+            console.log(reducePoints);
         }
 
         answers.push({username:username,option:data,time:time});
@@ -105,7 +124,7 @@ function showCorrectAnswere(){
 
     // Send points status to user
     socket.emit('getpoints');
-    
+
     console.log("show correct answere");
 
     if(endGame){
