@@ -40,9 +40,9 @@ $( document ).ready(function() {
 
     //logica redirect form url
     $('#gotoroom').on('click', function(event) {
-    event.preventDefault();
-    var url = $('#code-room').val();
-    location.replace("/play/ct/" + url.toLowerCase());
+      event.preventDefault();
+      var url = $('#code-room').val();
+      location.replace("/play/ct/" + url.toLowerCase());
     });
 
 
