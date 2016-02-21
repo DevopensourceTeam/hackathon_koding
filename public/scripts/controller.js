@@ -17,21 +17,56 @@ $( document ).ready(function() {
     });
 
     $("#button-1").on( "click", function() {
+        if($(this).hasClass( "lock" )){
+            return false;
+        }
+
+        $(this).addClass("answered");
+
+        lockcontroller();
+
+
         socket.emit('sendoption', 1);
         audioElement.play();
     });
 
     $("#button-2").on( "click", function() {
+        if($(this).hasClass( "lock" )){
+            return false;
+        }
+
+        $(this).addClass("answered");
+
+        lockcontroller();
+
+
+
         socket.emit('sendoption', 2);
         audioElement.play();
     });
 
     $("#button-3").on( "click", function() {
+        if($(this).hasClass( "lock" )){
+            return false;
+        }
+
+        $(this).addClass("answered");
+
+        lockcontroller();
+
         socket.emit('sendoption', 3);
         audioElement.play();
     });
 
     $("#button-4").on( "click", function() {
+        if($(this).hasClass( "lock" )){
+            return false;
+        }
+
+        $(this).addClass("answered");
+
+        lockcontroller();
+
         socket.emit('sendoption', 4);
         audioElement.play();
     });
@@ -44,6 +79,11 @@ $( document ).ready(function() {
         console.log(data);
     });
 
+    socket.on('unlockcontroller', function (data) {
+        unlockcontroller();
+        console.log(data);
+    });
+
     socket.on('getOptionValues', function (data) {
         console.log(data);
         $('div#button-1 span').text(data.option1);
@@ -53,3 +93,13 @@ $( document ).ready(function() {
         console.log(data);
     });
 });
+
+function unlockcontroller(){
+    $(".quizzbutton").removeClass('lock');
+    $(".quizzbutton").removeClass('answered');
+
+}
+
+function lockcontroller(){
+    $(".quizzbutton").addClass('lock');
+}

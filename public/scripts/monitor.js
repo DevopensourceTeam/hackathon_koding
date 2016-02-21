@@ -31,6 +31,7 @@ function startGame(){
 }
 
 function nextQuestion(questionCount){
+    socket.emit('unlockallcontroller', 1);
     $('#question span').text(questions[questionCount].question);
     $('#answer1 span').text(questions[questionCount].answers.option1);
     $('#answer2 span').text(questions[questionCount].answers.option2);

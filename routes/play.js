@@ -92,6 +92,11 @@ router.get('/', function(req, res, next) {
             socket.join(socket.room);
         });
 
+        socket.on('unlockallcontroller', function(room){
+            socket.room = room;
+            socket.broadcast.to(socket.room).emit('unlockcontroller', 1);
+        });
+
     });
 
     res.render('play', { title: 'Play', urlct: urlct,url:url ,qr:qr_str,hash:hash});

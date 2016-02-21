@@ -56,14 +56,46 @@ html, body, #game{
     background-color: #005DBE;
 }
 
+.blue.lock{
+    background-color: #003973;
+}
+
+.blue.lock.answered{
+    background-color: #0C83FF;
+}
+
 .orange{
     background-color: #F6A109;
+}
+
+.orange.lock{
+    background-color: #BF7C05;
+}
+
+.orange.lock.answered{
+    background-color: #FFAF21;
 }
 
 .green{
     background-color: #009632;
 }
 
+.green.lock{
+    background-color: #017929;
+}
+
+.green.lock.answered{
+    background-color: #01C342;
+}
+
 .red{
     background-color: #E90000;
+}
+
+.red.lock{
+    background-color: #9E0101;
+}
+
+.red.lock.answered{
+    background-color: #FF0101;
 }
