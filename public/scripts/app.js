@@ -6,9 +6,13 @@ $( document ).ready(function() {
     console.log('SCK: listen client ');
     console.log(_users);
 
-    for (i = 0; i < users.length; i++) {
-      $('#users').text(_users.indexOf(i));
-    }
+    $('#users').text('');
+    $.each(_users, function (index, value) {
+      console.log(value);
+      $('#users').append(value+'</br>');
+
+    });
+
   });
 
   socket.on('sendquestion', function(question){
