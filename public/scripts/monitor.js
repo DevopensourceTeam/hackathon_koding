@@ -6,6 +6,7 @@ var timeQuestion = 15000;
 var timeResult  = 5000;
 var totalTime = timeQuestion+timeResult;
 var remainingTime;
+var endGame = false;
 
 
 $( document ).ready(function() {
@@ -16,7 +17,6 @@ $( document ).ready(function() {
 
 
 function startGame(){
-    var endGame = false;
     var questionCount = 1;
     var timeQuestion = 15000;
     var timeResult  = 5000;
@@ -86,7 +86,7 @@ function nextQuestion(questionCount){
         }
     }, 1000);
 
-    socket.emit('unlockallcontroller', 1);
+    socket.emit('lockallcontroller', 0);
     answers = [];
     startTime = (new Date).getTime() / 1000;
     currentQuestion = questions[questionCount];
@@ -100,6 +100,10 @@ function nextQuestion(questionCount){
 }
 
 function showCorrectAnswere(){
+    socket.emit('lockallcontroller', 1);
+
     $('#answer'+currentQuestion.correct).addClass('correct');
+
+
     console.log("show correct answere");
 }

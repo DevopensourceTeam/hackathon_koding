@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
     var hostname = req.headers.host;
     var url = "http://"+hostname+"/play/"+hash;
-    var urlct = url+"/ct";
+    var urlct = "http://"+hostname+"/play/ct/"+hashurl;
 
     var qr_png = qr.imageSync(urlct, { type: 'png' });
     var qr_str = "data:image/png;base64," + qr_png.toString('base64');
@@ -146,9 +146,8 @@ router.get('/', function(req, res, next) {
             socket.join(socket.room);
         });
 
-        socket.on('unlockallcontroller', function(value){
-            console.log("unlock controllers");
-            socket.broadcast.to(socket.room).emit('unlockcontroller', 1);
+        socket.on('lockallcontroller', function(value){
+            socket.broadcast.to(socket.room).emit('lockcontroller', value);
         });
 
     });
@@ -156,8 +155,8 @@ router.get('/', function(req, res, next) {
     res.render('play', { title: 'Play', urlct: urlct,url:url ,qr:qr_str,hash:hash});
 });
 
-// Route /play/ia4i/ct
-router.get('/:hash/ct', function(req, res, next) {
+// Route /play/ct/ia4i
+router.get('/ct/:hash', function(req, res, next) {
     console.log('Route controller');
     var hash = req.params.hash;
     var avatar = Math.floor(Math.random() * 17) + 1;
@@ -172,7 +171,7 @@ router.get('/:hash', function(req, res, next) {
     var json = JSON.parse(require('fs').readFileSync(path.join(__dirname,'..', 'questions/questions.json'), 'utf8'));
     var questions = json.questions;
     questions = shuffle(questions);
-    questions = questions.slice(0, 5);
+    questions = questions.slice(0, 10);
     res.render('monitor', { title: 'Play', hash: hash, questions:questions});
 });
 

@@ -85,9 +85,12 @@ $( document ).ready(function() {
         console.log(data);
     });
 
-    socket.on('unlockcontroller', function (data) {
-        unlockcontroller();
-        console.log(data);
+    socket.on('lockcontroller', function (data) {
+        if(data){
+            lockcontroller()
+        }else{
+            unlockcontroller();
+        }
     });
 
     socket.on('getOptionValues', function (data) {
