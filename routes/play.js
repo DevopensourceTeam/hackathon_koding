@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
 
     var hostname = req.headers.host;
     var url = "http://"+hostname+"/play/"+hash;
+    var currentlocation = "http://"+hostname+"/play/";
     var urlct = "http://"+hostname+"/play/ct/"+hash;
     var qr_png = qr.imageSync(urlct, { type: 'png' });
     var qr_str = "data:image/png;base64," + qr_png.toString('base64');
@@ -184,7 +185,7 @@ router.get('/', function(req, res, next) {
 
     });
 
-    res.render('play', { title: 'Play', urlct: urlct,url:url ,qr:qr_str,hash:hash});
+    res.render('play', { title: 'Play', urlct: urlct,url:url ,qr:qr_str,hash:hash,currentlocation:currentlocation});
 });
 
 // Route /play/ct/ia4i

@@ -18,7 +18,7 @@ $( document ).ready(function() {
       console.log(index);
       console.log(value.avatar);
 
-      var html = '<div clas="user"><span><img src="/images/avatars/avatar_'+value.avatar+'.png"/></span><span>'+value.username+'</span></div>';
+      var html = '<div class="col-md-3 user"><img src="/images/avatars/avatar_'+value.avatar+'.png"/><span class="user-name">'+value.username+'</span></div>';
       $('#users').append(html);
 
     });
