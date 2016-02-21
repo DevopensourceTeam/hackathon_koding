@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
     var qr = require('qr-image');
 
     var hash = Math.random().toString(36).slice(-4);
-    
+    hash = 'flxr';
     hash.toLowerCase();
 
 
@@ -144,7 +144,7 @@ router.get('/', function(req, res, next) {
             // vars
             socket.username             = data.username;
             socket.room                 = data.room;
-            usernames[socket.username]  = {avatar:data.avatar,username:socket.username};
+            usernames[socket.username]  = {avatar:data.avatar, username:socket.username};
 
             console.log(usernames);
 
@@ -205,9 +205,16 @@ router.get('/ct/:hash', function(req, res, next) {
 
 // Route /play/ia4i
 router.get('/:hash', function(req, res, next) {
+
     console.log('Monitor controller');
+
     var hash = req.params.hash;
+
     hash.toLowerCase();
+
+    console.log('clean punctuation');
+    punctuation = {};
+    io.sockets.emit('updatepoints', {'punctuation':punctuation});
 
     var path = require('path');
     var json = JSON.parse(require('fs').readFileSync(path.join(__dirname,'..', 'questions/questions.json'), 'utf8'));

@@ -1,8 +1,10 @@
 var socket = io.connect();
 var username = "";
 var game = {};
+var points = 0;
 
 $( document ).ready(function() {
+
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', audio);
 
@@ -56,8 +58,6 @@ $( document ).ready(function() {
 
         lockcontroller();
 
-
-
         socket.emit('sendoption', 2);
         audioElement.play();
     });
@@ -96,7 +96,11 @@ $( document ).ready(function() {
         console.log(data);
         console.log('updatepoints');
 
-        var points = data.punctuation[username];
+        points = data.punctuation[username];
+
+        if(typeof points === 'undefined'){
+          points = 0;
+        }
 
         console.log(points);
 
