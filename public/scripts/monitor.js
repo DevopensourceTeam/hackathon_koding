@@ -18,6 +18,11 @@ $( document ).ready(function() {
 function startGame(){
     var endGame = false;
     var questionCount = 1;
+    var timeQuestion = 15000;
+    var timeResult  = 5000;
+    var totalTime = timeQuestion+timeResult;
+    var multPoint = 100;
+
 
     nextQuestion(0);
     var interval = setInterval(function(){
@@ -29,9 +34,13 @@ function startGame(){
         questionCount++;
     }, totalTime);
 
-    socket.on('updateoption', function (username,data) {
+    socket.on('updateoption', function (username, data) {
         var answereTime = (new Date).getTime() / 1000;
         var time = parseFloat(answereTime) - parseFloat(startTime);
+
+        console.log(username);
+        console.log(time);
+        console.log('time response user: '+ time);
 
         for (i = 0; i < answers.length; i++) {
             if(answers[i].username == username){
@@ -39,8 +48,16 @@ function startGame(){
             }
         }
 
+        pointsToUser = parseInt(time * multPoint);
+
+        socket.emit('sendpoints', {'points': pointsToUser, 'username':username });
+
+        console.log('pointsToUser: '+pointsToUser);
+
+        // send points to SERVER
         if(currentQuestion.correct==data){
             //calculate points
+
         }else{
 
         }

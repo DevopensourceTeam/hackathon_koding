@@ -32,7 +32,6 @@ $( document ).ready(function() {
 
         lockcontroller();
 
-
         socket.emit('sendoption', 1);
         audioElement.play();
     });

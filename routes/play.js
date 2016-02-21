@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
     var qr = require('qr-image');
 
     var hash = Math.random().toString(36).slice(-4);
+    hash = 'flxr';
 
     var hostname = req.headers.host;
     var url = "http://"+hostname+"/play/"+hash;
@@ -22,6 +23,7 @@ router.get('/', function(req, res, next) {
     var countUsers = 0;
 
     var punctuation = {};
+
     io.sockets.on('connection', function (socket) {
 
         console.log('SCK: listen connection event (ruta /)');
@@ -40,24 +42,55 @@ router.get('/', function(req, res, next) {
                 return false;
             }
 
-            console.log("punctuation process");
-            console.log(socket.username);
-
-          //  punctuation = socket.username.punctuation;
-
-
-            punctuation[socket.username] = 100;
-            socket.username['punctuation'] = 100;
-
-            console.log(punctuation);
-
-            console.log(socket.username.punctuation);
+          //   console.log("punctuation process");
+          //   console.log(socket.username);
+          //
+          //
+          //
+          //   punctuation[socket.username] = 100;
+          //   socket.username['punctuation'] = 100;
+          //
+          //   console.log(punctuation);
+          //
+          //   console.log(socket.username.punctuation);
 
             console.log('SCK: event sendoption');
             console.log(socket.username);
             console.log(data);
             console.log(socket.room);
             socket.broadcast.to(socket.room).emit('updateoption',  socket.username, data);
+        });
+
+        socket.on('sendpoints', function (data) {
+
+            console.log("receive points");
+
+            // Validation room
+            if(socket.room != hash){
+                return false;
+            }
+
+            console.log(data);
+
+            var username  = data.username;
+            var points    = data.points;
+
+            console.log(username);
+            console.log(points);
+            console.log("punctuation process");
+
+            punctuation[username]           = points;
+            //socket.username['punctuation']  = points;
+
+            console.log(punctuation);
+
+          //  console.log(socket.username.punctuation);
+
+            console.log('SCK: event sendpoints');
+
+            console.log(data);
+
+            //socket.broadcast.to(socket.room).emit('updateoption',  socket.username, data);
         });
 
         // Send answers to gamer
