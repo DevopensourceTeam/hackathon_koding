@@ -4,8 +4,63 @@ block content
     script(src='/scripts/app.js')
     script.
         var channel = '#{hash}';
-    h1
-        p Welcome to #{title}
+
+    div.wrapper
+        nav.navbar.navbar-fixed-top
+            div.container
+                div.navbar-header
+                    button.navbar-toggle.collapsed(type='button',data-toggle='collapse')
+                        span.sr-only navegacion
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand.text-uppercase getcrowder.com
+                div.collapse.navbar-collapse
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href='#') About
+                        li
+                            a(href='#') About
+                        li
+                            button.btn.btn-success.navbar-btn.btn-circle Login
+
+    div.container
+        div.row
+            div.col-md-12.text-center
+                h1 Game Quizz
+
+    div.container
+        div.row.visible-lg
+            div.col-md-6
+                div.panel.panel-default
+                    div.panel-heading.text-center
+                        strong Play game Option 1
+                    div.panel-body.text-center
+                        h1 Scand this code QR camera
+                        img(src='#{qr}')
+
+            div.col-md-6
+                div.panel.panel-default
+                    div.panel-heading.text-center
+                        strong Play game Option 2
+                    div.panel-body
+                        h1.text-center You can´t scand this code QR? follow this Steps
+                        li
+                            p Enter this URL in mobile Browser 
+                                span.label.label-info.label-grande #{urlct}
+                        li
+                            p Enter de code in mobile Browser 
+                                span.label.label-success.label-grande #{hash}
+
+        div.row.hidden-lg
+            div.col-md-6.col-md-offset-4
+                div.panel.panel-default
+                    div.panel-heading.text-center
+                        strong Play game Option 2
+                    div.panel-body
+                        input#code-room(placeholder='code room')
+                        button#gotoroom Start to play
+
 
     img(src='#{qr}')
     p #{urlct}
@@ -14,5 +69,5 @@ block content
     h2 Players
     p#users
 
-
     button#gotoplay(onclick='location.href = \'#{url}\';')(disabled="disabled") Start to play
+

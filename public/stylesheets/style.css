@@ -1,6 +1,7 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
 }
 
 a {
@@ -9,4 +10,18 @@ a {
 
 .correct{
     background-color: #006600;
+}
+
+.panel-heading {
+    padding: 5px 15px;
+}
+
+.panel-footer {
+	padding: 1px 15px;
+	color: #A0A0A0;
+}
+
+.label-grande {
+	font-size: 1.3em;
+	padding: 5px;
 }
