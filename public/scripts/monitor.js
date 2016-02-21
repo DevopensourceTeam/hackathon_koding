@@ -2,11 +2,13 @@ var socket = io.connect();
 var startTime;
 var answers;
 var currentQuestion;
-var timeQuestion = 15000;
+var timeQuestion = 10000;
 var timeResult  = 5000;
 var totalTime = timeQuestion+timeResult;
 var remainingTime;
 var endGame = false;
+var reducePoints = 1000;
+var multPoint = 100;
 
 
 $( document ).ready(function() {
@@ -18,12 +20,6 @@ $( document ).ready(function() {
 
 function startGame(){
     var questionCount = 1;
-    var timeQuestion = 15000;
-    var timeResult  = 5000;
-    var totalTime = timeQuestion+timeResult;
-    var multPoint = 100;
-    var reducePoints = 1000;
-
 
     nextQuestion(0);
     var interval = setInterval(function(){
