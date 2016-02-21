@@ -5,11 +5,19 @@ $( document ).ready(function() {
   socket.on('updateusers', function(_users){
     console.log('SCK: listen client ');
     console.log(_users);
-
+    // clean list users
     $('#users').text('');
+
+    // view of user
+
+    var numUserExist = {};
+
     $.each(_users, function (index, value) {
-      console.log(value);
-      $('#users').append(value+'</br>');
+
+      var randomNumber = Math.floor(Math.random() * 17) + 1  ;
+      console.log(randomNumber);
+      var html = '<div clas="user"><span><img src="/images/avatars/avatar_'+randomNumber+'.png"/></span><span>'+value+'</span></div>';
+      $('#users').append(html);
 
     });
 

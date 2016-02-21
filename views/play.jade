@@ -4,14 +4,14 @@ block content
     script(src='/scripts/app.js')
     script.
         var channel = '#{hash}';
-    h1= title
+    h1
         p Welcome to #{title}
 
     img(src='#{qr}')
     p #{urlct}
 
 
-    h2 Users connected
+    h2 Players
     p#users
 
     button#gotoplay(onclick='location.href = \'#{url}\';')(disabled="disabled") Start to play
