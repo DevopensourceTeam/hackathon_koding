@@ -37,7 +37,7 @@ $( document ).ready(function() {
   $('#gotoroom').on('click', function(event) {
     event.preventDefault(); 
     var url = $('#code-room').val();
-    location.replace("/play/ct/" + url);
+    location.replace("/play/ct/" + url.toLowerCase());
   });
 
 
