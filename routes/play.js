@@ -83,7 +83,12 @@ router.get('/', function(req, res, next) {
                 }
 
             }else {
+              if(isNaN(punctuation[username])){
                 punctuation[username] = points;
+              }else{
+                punctuation[username] = parseInt(punctuation[username] + points);
+              }
+
             }
 
             //socket.username['punctuation']  = points;
