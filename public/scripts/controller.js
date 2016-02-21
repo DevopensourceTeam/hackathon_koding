@@ -18,6 +18,7 @@ $( document ).ready(function() {
             $('#usernameDisplay').html(username+' ');
             $("#init").hide();
             $("#game").show();
+            enterFullscreen();
         }
 
 
@@ -119,4 +120,40 @@ function unlockcontroller(){
 
 function lockcontroller(){
     $(".quizzbutton").addClass('lock');
+}
+
+function onFullScreenEnter() {
+  console.log("Entered fullscreen!");
+  elem.onwebkitfullscreenchange = onFullScreenExit;
+  elem.onmozfullscreenchange = onFullScreenExit;
+};
+
+// Called whenever the browser exits fullscreen.
+function onFullScreenExit() {
+  console.log("Exited fullscreen!");
+};
+
+function exitFullscreen() {
+  console.log("exitFullscreen()");
+  document.cancelFullScreen();
+  document.getElementById('enter-exit-fs').onclick = enterFullscreen;
+}
+
+// Note: FF nightly needs about:config full-screen-api.enabled set to true.
+function enterFullscreen() {
+  var elem = document.querySelector(document.webkitExitFullscreen ? "#game" : "#game");
+  console.log("enterFullscreen()");
+  elem.onwebkitfullscreenchange = onFullScreenEnter;
+  elem.onmozfullscreenchange = onFullScreenEnter;
+  elem.onfullscreenchange = onFullScreenEnter;
+  if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+  } else {
+    if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else {
+      elem.requestFullscreen();
+    }
+  }
+  //document.getElementById('enter-exit-fs').onclick = exitFullscreen;
 }
