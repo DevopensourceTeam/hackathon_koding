@@ -6,6 +6,16 @@ $( document ).ready(function() {
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', audio);
 
+
+    if($.cookie('username')){
+        username = $.cookie('username');
+        socket.emit('adduser', {username:username,room:channel, avatar:avatar});
+        audioElement.play();
+        $('#usernameDisplay').html(username+' ');
+        $("#init").hide();
+        $("#game").show();
+    }
+
     $("#sendusername").on( "click", function(event) {
 
         // Cancel default action click event
@@ -14,6 +24,9 @@ $( document ).ready(function() {
         username = $("#username").val();
         if (username) {
             socket.emit('adduser', {username:username,room:channel, avatar:avatar});
+            $.cookie('username', username, { expires: 7, path: '/' });
+            $.cookie('avatar', avatar, { expires: 7, path: '/' });
+
             audioElement.play();
             $('#usernameDisplay').html(username+' ');
             $("#init").hide();
