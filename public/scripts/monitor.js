@@ -22,6 +22,7 @@ function startGame(){
     var timeResult  = 5000;
     var totalTime = timeQuestion+timeResult;
     var multPoint = 100;
+    var reducePoints = 100;
 
 
     nextQuestion(0);
@@ -50,16 +51,14 @@ function startGame(){
 
         pointsToUser = parseInt(time * multPoint);
 
-        socket.emit('sendpoints', {'points': pointsToUser, 'username':username });
-
         console.log('pointsToUser: '+pointsToUser);
 
         // send points to SERVER
         if(currentQuestion.correct==data){
             //calculate points
-
+            socket.emit('sendpoints', {'points': pointsToUser, 'username':username });
         }else{
-
+            socket.emit('sendpoints', {'points': reducePoints, 'username':username, 'reduce': true });
         }
 
         answers.push({username:username,option:data,time:time});

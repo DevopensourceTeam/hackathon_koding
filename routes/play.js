@@ -79,12 +79,29 @@ router.get('/', function(req, res, next) {
             console.log(points);
             console.log("punctuation process");
 
-            punctuation[username]           = points;
+            if(data.reduce){
+
+                console.log("reduce points to"+ username);
+
+                if (isNaN(punctuation[username])) {
+                    console.log("is nan");
+                    punctuation[username] = 0;
+                }else if(parseInt(points) >= parseInt(punctuation[username]) ){
+                    console.log("major than points current");
+                    punctuation[username] = 0;
+                }else{
+                    console.log("reduce points");
+                    punctuation[username] = punctuation[username] - points;
+                }
+
+            }else {
+                punctuation[username] = points;
+            }
+
             //socket.username['punctuation']  = points;
+            //  console.log(socket.username.punctuation);
 
             console.log(punctuation);
-
-          //  console.log(socket.username.punctuation);
 
             console.log('SCK: event sendpoints');
 
@@ -141,7 +158,9 @@ router.get('/', function(req, res, next) {
             console.log('SCK: listen connection event :addmonitor');
 
             socket.room         = room;
-            socket.punctuation  = punctuation;
+            socket.punctuation  = {};
+
+            console.log(socket.punctuation);
 
             socket.join(socket.room);
         });
