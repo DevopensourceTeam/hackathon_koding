@@ -51,8 +51,8 @@ router.get('/', function(req, res, next) {
 router.get('/:hash/ct', function(req, res, next) {
 
     var hash = req.params.hash;
-
-    res.render('controller', { title: 'Controller', hash: hash});
+    var avatar = Math.floor(Math.random() * 17) + 1;
+    res.render('controller', { title: 'Controller', hash: hash, avatar:avatar});
 });
 
 router.get('/:hash', function(req, res, next) {

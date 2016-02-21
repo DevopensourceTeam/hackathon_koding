@@ -15,12 +15,16 @@ html, body, #game{
     background-color:#424040;
 }
 
+#header div{
+    display: table-cell;
+    vertical-align: middle;
+}
+
 #header span{
     color: #fff;
     font-family: helvetica;
-    font-size: 2.5em;
-    display: table-cell;
-    vertical-align: middle;
+    font-size: 2em;
+
 }
 
 #controls{

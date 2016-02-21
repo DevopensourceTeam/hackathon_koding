@@ -11,13 +11,16 @@ html
     block content
         script.
           var channel = '#{hash}';
+          var audio = '/sounds/sound_#{avatar}.mp3';
         div#init
             label(for=username) Username
             input#username
             a#sendusername(href='#') OK
         div#game.hidden
             div#header
-                span Username 2450
+                div
+                    img(src='/images/avatars/avatar_#{avatar}.png')
+                    span Username 2450
             div#controls
                 div#button-1.quizzbutton.blue
                     span Blue
