@@ -20,6 +20,8 @@ router.get('/', function(req, res, next) {
      */
     var usernames = {};
     var countUsers = 0;
+
+    var punctuation = {};
     io.sockets.on('connection', function (socket) {
 
         console.log('SCK: listen connection event (ruta /)');
@@ -37,6 +39,19 @@ router.get('/', function(req, res, next) {
             if(socket.room != hash){
                 return false;
             }
+
+            console.log("punctuation process");
+            console.log(socket.username);
+
+          //  punctuation = socket.username.punctuation;
+
+
+            punctuation[socket.username] = 100;
+            socket.username['punctuation'] = 100;
+
+            console.log(punctuation);
+
+            console.log(socket.username.punctuation);
 
             console.log('SCK: event sendoption');
             console.log(socket.username);
@@ -77,10 +92,10 @@ router.get('/', function(req, res, next) {
 
             io.sockets.emit('updateusers', usernames);
 
-            console.log('num users: '+countUsers);
-
             // Count total users
             countUsers++;
+
+            console.log('num users: '+countUsers);
 
             // If one user enable play
             if(countUsers == 1){
@@ -89,7 +104,12 @@ router.get('/', function(req, res, next) {
         });
 
         socket.on('addmonitor', function(room){
-            socket.room = room;
+
+            console.log('SCK: listen connection event :addmonitor');
+
+            socket.room         = room;
+            socket.punctuation  = punctuation;
+
             socket.join(socket.room);
         });
 
