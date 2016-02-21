@@ -93,8 +93,8 @@ router.get('/', function(req, res, next) {
             socket.join(socket.room);
         });
 
-        socket.on('unlockallcontroller', function(room){
-            socket.room = room;
+        socket.on('unlockallcontroller', function(value){
+            console.log("unlock controllers");
             socket.broadcast.to(socket.room).emit('unlockcontroller', 1);
         });
 
