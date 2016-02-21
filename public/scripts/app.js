@@ -2,7 +2,10 @@ var socket = io.connect();
 
 $( document ).ready(function() {
 
-  socket.on('updateusers', function(_users){
+    socket.emit('newsession', channel);
+
+
+    socket.on('updateusers', function(_users){
     console.log('SCK: listen client ');
     console.log(_users);
 
@@ -23,9 +26,9 @@ $( document ).ready(function() {
 
     });
 
-  });
+    });
 
-  socket.on('enableplay', function(game){
+    socket.on('enableplay', function(game){
     console.log('SCK: listen client :enableplay ');
     console.log(game);
 
@@ -33,14 +36,14 @@ $( document ).ready(function() {
         $('#gotoplay').prop("disabled", false);
     }
 
-  });
+    });
 
-  //logica redirect form url
-  $('#gotoroom').on('click', function(event) {
+    //logica redirect form url
+    $('#gotoroom').on('click', function(event) {
     event.preventDefault();
     var url = $('#code-room').val();
     location.replace("/play/ct/" + url.toLowerCase());
-  });
+    });
 
 
 });

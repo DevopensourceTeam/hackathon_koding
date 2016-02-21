@@ -145,7 +145,7 @@ router.get('/', function(req, res, next) {
             socket.emit('updatecommand', 'SERVER', 'you have connected');
             socket.broadcast.to(hash).emit('updatecommand', 'SERVER', socket.username + ' has connected to this room');
 
-            io.sockets.emit('updateusers', usernames);
+            io.sockets.to(socket.room).emit('updateusers', usernames);
 
             // Count total users
             countUsers++;
@@ -154,8 +154,16 @@ router.get('/', function(req, res, next) {
 
             // If one user enable play
             if(countUsers == 1){
-                io.sockets.emit('enableplay', true);
+                io.sockets.to(socket.room).emit('enableplay', true);
             }
+        });
+
+        socket.on('newsession', function(room){
+            if(room != hash){
+                return false;
+            }
+
+            socket.join(room);
         });
 
         socket.on('addmonitor', function(room){
