@@ -1,7 +1,8 @@
 var socket = io.connect();
 var username = "";
 var game = {};
-var points = 0;
+var positionRank;
+var points = 0 ;
 
 $( document ).ready(function() {
 
@@ -102,8 +103,23 @@ $( document ).ready(function() {
           points = 0;
         }
 
-        console.log(points);
+        var totalPoints = [];
 
+        $.each(data.punctuation,function(index, value){
+            totalPoints.push({user:index,points:value});
+        });
+
+        totalPoints = totalPoints.sort(function(a, b){return b.points-a.points});
+        positionRank=1;
+        $.each(totalPoints,function(index, value){
+            if(value.user==username){
+                return false;
+            }else{
+                positionRank++;
+            }
+        });
+
+        console.log(points);
         $('#points').text(points + ' points');
 
     });
@@ -116,8 +132,17 @@ $( document ).ready(function() {
         }
     });
 
+    socket.on('endgame', function (data) {
+        $("#waiting").hide();
+        $("#game").hide();
+        $('span#position').text(positionRank);
+        $('span#points').text(points);
+        $("#endgame").show();
+    });
+
     socket.on('getOptionValues', function (data) {
         if($('#game').is(':hidden')){
+            $("#endgame").hide();
             $("#waiting").hide();
             $("#game").show();
             audioElement.play();

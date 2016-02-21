@@ -183,6 +183,9 @@ router.get('/', function(req, res, next) {
             socket.broadcast.to(socket.room).emit('lockcontroller', value);
         });
 
+        socket.on('endgame', function(value){
+            socket.broadcast.to(socket.room).emit('endgame', value);
+        });
     });
 
     res.render('play', { title: 'Play', urlct: urlct,url:url ,qr:qr_str,hash:hash,currentlocation:currentlocation});

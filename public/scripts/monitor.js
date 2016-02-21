@@ -30,7 +30,7 @@ function startGame(){
          if(questionCount>questions.length-2){
              endGame=true;
             clearInterval(interval);
-        }
+         }
         nextQuestion(questionCount);
         questionCount++;
     }, totalTime);
@@ -107,4 +107,11 @@ function showCorrectAnswere(){
     socket.emit('getpoints');
     
     console.log("show correct answere");
+
+    if(endGame){
+        setTimeout(function(){
+            socket.emit('endgame');
+        }, timeResult);
+    }
+
 }
