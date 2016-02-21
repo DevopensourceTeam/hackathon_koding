@@ -102,6 +102,7 @@ function nextQuestion(questionCount){
             clearInterval(intervalQuestion);
             showCorrectAnswere();
         }else{
+            var percent = ((remainingTime/1000)*100)/(timeQuestion/1000);
             $('#timer span').text(remainingTime/1000);
         }
     }, 1000);
