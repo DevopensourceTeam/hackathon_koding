@@ -30,8 +30,6 @@ router.get('/', function(req, res, next) {
 
         console.log('SCK: listen connection event (ruta /)');
         socket.on('sendoption', function (data) {
-
-            // Validation room
             if(socket.room != hash){
                 return false;
             }
@@ -56,10 +54,6 @@ router.get('/', function(req, res, next) {
         });
 
         socket.on('sendpoints', function (data) {
-
-            console.log("receive points");
-
-            // Validation room
             if(socket.room != hash){
                 return false;
             }
@@ -106,8 +100,6 @@ router.get('/', function(req, res, next) {
 
         // Send points to monitor
         socket.on('getpoints', function (data) {
-
-            // Validation room
             if(socket.room != hash){
                 return false;
             }
@@ -118,8 +110,6 @@ router.get('/', function(req, res, next) {
 
         // Send answers to gamer
         socket.on('sendanswers', function (data) {
-
-            // Validation room
             if(socket.room != hash){
                 return false;
             }
@@ -130,7 +120,6 @@ router.get('/', function(req, res, next) {
 
         // when the client emits 'adduser', this listens and executes
         socket.on('adduser', function(data){
-
             if(data.room != hash){
                 return false;
             }
@@ -180,10 +169,18 @@ router.get('/', function(req, res, next) {
         });
 
         socket.on('lockallcontroller', function(value){
+            if(socket.room != hash){
+                return false;
+            }
+
             socket.broadcast.to(socket.room).emit('lockcontroller', value);
         });
 
         socket.on('endgame', function(value){
+            if(socket.room != hash){
+                return false;
+            }
+
             socket.broadcast.to(socket.room).emit('endgame', value);
         });
     });
