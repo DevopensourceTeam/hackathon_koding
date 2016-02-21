@@ -49,7 +49,9 @@ router.get('/', function(req, res, next) {
             // vars
             socket.username             = data.username;
             socket.room                 = data.room;
-            usernames[socket.username]  = socket.username;
+            usernames[socket.username]  = {avatar:data.avatar,username:socket.username};
+
+            console.log(usernames);
 
             countUsers++;
 
@@ -57,6 +59,8 @@ router.get('/', function(req, res, next) {
             socket.join(socket.room);
             socket.emit('updatecommand', 'SERVER', 'you have connected');
             socket.broadcast.to(hash).emit('updatecommand', 'SERVER', socket.username + ' has connected to this room');
+
+
             io.sockets.emit('updateusers', usernames);
 
             console.log('num users: '+countUsers);

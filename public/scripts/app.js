@@ -13,10 +13,11 @@ $( document ).ready(function() {
     var numUserExist = {};
 
     $.each(_users, function (index, value) {
-
-      var randomNumber = Math.floor(Math.random() * 17) + 1  ;
-      console.log(randomNumber);
-      var html = '<div clas="user"><span><img src="/images/avatars/avatar_'+randomNumber+'.png"/></span><span>'+value+'</span></div>';
+      console.log(index);
+      console.log(value.avatar);
+    //  var randomNumber = Math.floor(Math.random() * 17) + 1  ;
+    //  console.log(randomNumber);
+      var html = '<div clas="user"><span><img src="/images/avatars/avatar_'+value.avatar+'.png"/></span><span>'+value.username+'</span></div>';
       $('#users').append(html);
 
     });

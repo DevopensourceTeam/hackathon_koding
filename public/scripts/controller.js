@@ -9,7 +9,7 @@ $( document ).ready(function() {
     $("#sendusername").on( "click", function() {
         username = $("#username").val();
         if (username) {
-            socket.emit('adduser', {username:username,room:channel});
+            socket.emit('adduser', {username:username,room:channel, avatar:avatar});
             audioElement.play();
             $("#init").hide();
             $("#game").show();
