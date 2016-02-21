@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
     var qr = require('qr-image');
 
     var hash = Math.random().toString(36).slice(-4);
-    hash = 'flxr';
+    
     hash.toLowerCase();
 
 
