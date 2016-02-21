@@ -83,6 +83,14 @@ $( document ).ready(function() {
 
     socket.on('updatepoints', function (data) {
         console.log(data);
+        console.log('updatepoints');
+
+        var points = data.punctuation[username];
+
+        console.log(points);
+
+        $('#points').text(points + ' points');
+
     });
 
     socket.on('lockcontroller', function (data) {

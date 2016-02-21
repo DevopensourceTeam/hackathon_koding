@@ -111,6 +111,18 @@ router.get('/', function(req, res, next) {
             //socket.broadcast.to(socket.room).emit('updateoption',  socket.username, data);
         });
 
+        // Send points to monitor
+        socket.on('getpoints', function (data) {
+
+            // Validation room
+            if(socket.room != hash){
+                return false;
+            }
+
+            console.log(data);
+            socket.broadcast.to(socket.room).emit('updatepoints', {'punctuation':punctuation});
+        });
+
         // Send answers to gamer
         socket.on('sendanswers', function (data) {
 

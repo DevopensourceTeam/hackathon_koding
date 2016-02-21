@@ -103,6 +103,8 @@ function showCorrectAnswere(){
 
     $('#answer'+currentQuestion.correct).addClass('correct');
 
-
+    // Send points status to user
+    socket.emit('getpoints');
+    
     console.log("show correct answere");
 }
