@@ -89,10 +89,6 @@ $( document ).ready(function() {
         audioElement.play();
     });
 
-    socket.on('controllercommand', function (data) {
-        console.log(data);
-    });
-
     socket.on('updatepoints', function (data) {
         console.log(data);
         console.log('updatepoints');

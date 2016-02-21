@@ -29,14 +29,6 @@ router.get('/', function(req, res, next) {
     io.sockets.on('connection', function (socket) {
 
         console.log('SCK: listen connection event (ruta /)');
-
-        socket.on('sendcommand', function (data) {
-            console.log('SCK: event sendcommand');
-
-            socket.broadcast.to(socket.room).emit('updatecommand',  socket.username, data);
-            socket.emit('updatecommand',  socket.username, data);
-        });
-
         socket.on('sendoption', function (data) {
 
             // Validation room
@@ -138,6 +130,11 @@ router.get('/', function(req, res, next) {
 
         // when the client emits 'adduser', this listens and executes
         socket.on('adduser', function(data){
+
+            if(data.room != hash){
+                return false;
+            }
+
             console.log('SCK: event adduser');
             console.log('SCK: connect user');
             console.log(data);
@@ -168,6 +165,9 @@ router.get('/', function(req, res, next) {
         });
 
         socket.on('addmonitor', function(room){
+            if(room != hash){
+                return false;
+            }
 
             console.log('SCK: listen connection event :addmonitor');
 
