@@ -42,7 +42,7 @@ $( document ).ready(function() {
     $('#gotoroom').on('click', function(event) {
       event.preventDefault();
       var url = $('#code-room').val();
-      location.replace("/play/ct/" + url.toLowerCase());
+      location.replace("/game-quizz/play/ct/" + url.toLowerCase());
     });
 
 
