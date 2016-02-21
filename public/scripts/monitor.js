@@ -22,7 +22,7 @@ function startGame(){
     var timeResult  = 5000;
     var totalTime = timeQuestion+timeResult;
     var multPoint = 100;
-    var reducePoints = 100;
+    var reducePoints = 1000;
 
 
     nextQuestion(0);
@@ -54,18 +54,24 @@ function startGame(){
             }
         }
 
-        var timeRest = 15 - time;
-
-        console.log('currentQuestion.correct '+ currentQuestion.correct );
-
-        console.log('timeRest: '+timeRest);
-
-        pointsToUser = timeRest * multPoint;
-
-        console.log('pointsToUser: '+pointsToUser);
-
         // send points to SERVER
         if(currentQuestion.correct == data){
+
+            console.log('timeRest: '+time.toFixed(2));
+
+
+            var timeRest = timeQuestion / 1000 - time.toFixed(2);
+
+            console.log('currentQuestion.correct '+ currentQuestion.correct );
+
+            console.log('timeRest: '+timeRest);
+
+            pointsToUser = timeRest * multPoint;
+
+            console.log('multPoint'+ multPoint);
+
+            console.log('pointsToUser: '+pointsToUser);
+
             //calculate points
             socket.emit('sendpoints', {'points': pointsToUser, 'username':username });
 
