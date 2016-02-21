@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
     var hostname = req.headers.host;
     var url = "http://"+hostname+"/play/"+hash;
-    var urlct = "http://"+hostname+"/play/ct/"+hashurl;
+    var urlct = "http://"+hostname+"/play/ct/"+hash;
 
     var qr_png = qr.imageSync(urlct, { type: 'png' });
     var qr_str = "data:image/png;base64," + qr_png.toString('base64');
