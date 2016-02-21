@@ -1,10 +1,9 @@
 var socket = io.connect();
+var username = "";
 
 $( document ).ready(function() {
     $("#sendusername").on( "click", function() {
-        var username = $("#username").val();
-
-        console.log(username);
+        username = $("#username").val();
         if (username) {
             socket.emit('adduser', {username:username,room:channel});
             $("#init").hide();
@@ -13,32 +12,27 @@ $( document ).ready(function() {
     });
 
     $("#button-1").on( "click", function() {
-        socket.emit(channel+'_room', { username: username, push:1 });
+        socket.emit('sendoption', 1);
     });
 
     $("#button-2").on( "click", function() {
-        socket.emit(channel+'_room', { username: username, push:2 });
+        socket.emit('sendoption', 2);
     });
 
     $("#button-3").on( "click", function() {
-        socket.emit(channel+'_room', { username: username, push:3 });
+        socket.emit('sendoption', 3);
     });
 
     $("#button-4").on( "click", function() {
-        socket.emit(channel+'_room', { username: username, push:4 });
+        socket.emit('sendoption', 4);
     });
 
-    // listener, whenever the server emits 'updatechat', this updates the chat body
-    socket.on('updatecommand', function (username, data) {
-        console.log(username,data);
+    socket.on('controllercommand', function (data) {
+        console.log(data);
     });
 
-    // listener, whenever the server emits 'updateusers', this updates the username list
-    socket.on('updateusers', function(data) {
-        $('#users').empty();
-        $.each(data, function(key, value) {
-            console.log(key);
-        });
+    socket.on('updatepoints', function (data) {
+        console.log(data);
     });
 
 });

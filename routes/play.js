@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
     var qr = require('qr-image');
 
     var hash = Math.random().toString(36).slice(-4);
-    
+
     var hostname = req.headers.host;
     var url = "http://"+hostname+"/play/"+hash;
     var urlct = url+"/ct";
@@ -21,11 +21,15 @@ router.get('/', function(req, res, next) {
     io.sockets.on('connection', function (socket) {
 
         socket.on('sendcommand', function (data) {
-            console.log(data);
-            console.log(socket.room);
+            //console.log(data);
             socket.broadcast.to(socket.room).emit('updatecommand',  socket.username, data);
             socket.emit('updatecommand',  socket.username, data);
+        });
 
+        socket.on('sendoption', function (data) {
+            console.log(socket.username);
+            console.log(data);
+            socket.broadcast.to(socket.room).emit('updateoption',  socket.username, data);
         });
 
         // when the client emits 'adduser', this listens and executes
