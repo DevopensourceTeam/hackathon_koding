@@ -66,7 +66,7 @@ function startGame(){
 
             console.log('timeRest: '+timeRest);
 
-            pointsToUser = timeRest * multPoint;
+            pointsToUser = parseInt(timeRest * multPoint);
 
             console.log('multPoint'+ multPoint);
 
