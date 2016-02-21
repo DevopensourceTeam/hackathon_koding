@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+// Route /play
 router.get('/', function(req, res, next) {
 
     var qr = require('qr-image');
@@ -102,15 +103,17 @@ router.get('/', function(req, res, next) {
     res.render('play', { title: 'Play', urlct: urlct,url:url ,qr:qr_str,hash:hash});
 });
 
-
+// Route /play/ia4i/ct
 router.get('/:hash/ct', function(req, res, next) {
-    console.log('Ruta controller');
+    console.log('Route controller');
     var hash = req.params.hash;
     var avatar = Math.floor(Math.random() * 17) + 1;
     res.render('controller', { title: 'Controller', hash: hash, avatar:avatar});
 });
 
+// Route /play/ia4i
 router.get('/:hash', function(req, res, next) {
+    console.log('Monitor controller');
     var hash = req.params.hash;
     var path = require('path');
     var json = JSON.parse(require('fs').readFileSync(path.join(__dirname,'..', 'questions/questions.json'), 'utf8'));

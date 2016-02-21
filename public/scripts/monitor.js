@@ -5,8 +5,6 @@ $( document ).ready(function() {
 
     startGame();
 
-
-
     socket.on('updateoption', function (username,data) {
         console.log(username);
         console.log(data);
