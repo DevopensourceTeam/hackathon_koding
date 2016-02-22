@@ -92,12 +92,12 @@ function nextQuestion(questionCount){
     $('#timer span').text(remainingTime/1000);
 
     console.log(timeQuestion);
-    
+
     $('.progress-type span').text(timeQuestion/1000);
     $('.progress-bar').width('100%');
     $('.progress-completed, .sr-only').text('100%');
     $('.progress-bar').attr('aria-valuenow', 100);
-        
+
     var intervalQuestion = setInterval(function(){
         remainingTime = remainingTime-1000;
         if(remainingTime<0){
@@ -128,15 +128,6 @@ function nextQuestion(questionCount){
     socket.emit('sendanswers', questions[questionCount].answers);
 }
 
-function endGameResults(){
-
-
-
-}
-
-socket.on('finalizemonitor', function(data){
-    console.log(data);
-});
 
 function showCorrectAnswere(){
     socket.emit('lockallcontroller', 1);
@@ -150,10 +141,14 @@ function showCorrectAnswere(){
 
     if(endGame){
 
+          socket.on('finalizemonitor', function(data){
+              console.log('finalizemonitor');
+              console.log(data);
+          });
+
           socket.emit('endgame');
 
           console.log("end game");
-          //endGameResults();
 
           var html = '<table class="table table-hover"><thead><tr><th>#</th><th>Username</th><th>Points</th></tr></thead><tbody>';
 

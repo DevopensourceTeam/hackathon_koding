@@ -181,7 +181,10 @@ router.get('/', function(req, res, next) {
                 return false;
             }
 
+            console.log("SERVER: end game");
+            socket.broadcast.to(socket.room).emit('finalizemonitor', 'prueba');
             socket.broadcast.to(socket.room).emit('endgame', value);
+
         });
     });
 
