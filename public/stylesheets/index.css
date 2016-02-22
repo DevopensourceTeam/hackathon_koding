@@ -138,3 +138,8 @@ body{
 .block-footer{
   margin-bottom: 10px;
 }
+
+.image-game img,
+.image-game iframe{
+  width: 100%
+}
