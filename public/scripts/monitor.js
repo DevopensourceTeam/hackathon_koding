@@ -187,6 +187,7 @@ function displayResults(){
 
     $('.questionrow').hide();
     $('#results-container').show();
+    $('#ribbon-wrapper').removeClass('hidden');
 
     $('#results').html(html);
 }
