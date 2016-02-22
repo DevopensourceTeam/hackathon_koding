@@ -108,10 +108,10 @@ a {
     background-color: #f0ad4e;
     border-color: #f0ad4e;
 }
-.input-group-addon.green {
+.input-group-addon.purple {
     color: rgb(255, 255, 255);
-    background-color: #5cb85c;
-    border-color: #5cb85c;
+    background-color: #7406B9;
+    border-color: #7406B9;
 }
 .input-group-addon.red {
     color: rgb(255, 255, 255);
@@ -119,5 +119,18 @@ a {
     border-color: #d9534f;
 }
 
+.form-control {
+	height: auto;
+	padding: 1em;
+	font-size: 2em;
+}
+.form-control.blue { border: 1em solid #5bc0de; }
+.form-control.orange { border: 1em solid #f0ad4e; }
+.form-control.purple { border: 1em solid #7406B9; }
+.form-control.red { border: 1em solid #d9534f; }
+
+.input-group-addon {
+	font-size: 2em;
+}
 
 
