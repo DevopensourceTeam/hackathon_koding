@@ -152,6 +152,7 @@ $( document ).ready(function() {
     });
 
     socket.on('endgame', function (data) {
+        $('#splashpoint').hide();
         $("#waiting").hide();
         $("#game").hide();
         $('span#position').text(positionRank);
