@@ -158,16 +158,13 @@ function showCorrectAnswere(){
           var html = '<table class="table table-hover"><thead><tr><th>#</th><th>Username</th><th>Points</th></tr></thead><tbody>';
 
           for(var i = 0; i < 5; i++){
-              html = html + '<tr><td>'+i+'</td><td>username'+i+'</td><td>1000'+i+'</td></tr>';
+              html = html + '<tr class=""><td>'+i+'</td><td>username'+i+'</td><td>1000'+i+'</td></tr>';
           }
 
           html = html + '</tbody>';
           html = html + '</table>';
 
-          $('#answers').hide();
-          $('#question').hide();
-          $('#timer').hide();
-
+          $('.questionrow').hide();
           $('#results').html(html);
           $('#results').show();
 
