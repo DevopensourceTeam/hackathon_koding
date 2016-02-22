@@ -22,7 +22,8 @@ Image placeholders: placemi.com
 }
 
 .header {
-  padding-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #eee;
   overflow: hidden;
 }
@@ -88,4 +89,32 @@ Image placeholders: placemi.com
 
 .page-header{
   font-size: 90px;
+}
+
+body{
+  padding: 0;
+}
+
+.title-img{
+  padding-top: 60px;
+}
+
+.badge-img{
+  margin-bottom: 10px;
+}
+
+.features-list{
+  padding-top: 40px;
+}
+
+.img-works {
+  width: 90%;
+}
+
+.title-works{
+  font-size: 80px;
+}
+
+.image-logo-footer{
+  margin-right: 40px;
 }
