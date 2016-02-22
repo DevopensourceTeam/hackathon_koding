@@ -10,13 +10,10 @@ var endGame = false;
 var reducePoints = 500;
 var multPoint = 100;
 
-
 $( document ).ready(function() {
     socket.emit('addmonitor', channel);
     startGame();
 });
-
-
 
 function startGame(){
     var questionCount = 1;
@@ -131,6 +128,16 @@ function nextQuestion(questionCount){
     socket.emit('sendanswers', questions[questionCount].answers);
 }
 
+function endGameResults(){
+
+
+
+}
+
+socket.on('finalizemonitor', function(data){
+    console.log(data);
+});
+
 function showCorrectAnswere(){
     socket.emit('lockallcontroller', 1);
 
@@ -142,9 +149,31 @@ function showCorrectAnswere(){
     console.log("show correct answere");
 
     if(endGame){
-        setTimeout(function(){
-            socket.emit('endgame');
-        }, timeResult);
+
+          socket.emit('endgame');
+
+          console.log("end game");
+          //endGameResults();
+
+          var html = '<table class="table table-hover"><thead><tr><th>#</th><th>Username</th><th>Points</th></tr></thead><tbody>';
+
+          for(var i = 0; i < 5; i++){
+              html = html + '<tr><td>'+i+'</td><td>username'+i+'</td><td>1000'+i+'</td></tr>';
+          }
+
+          html = html + '</tbody>';
+          html = html + '</table>';
+
+          $('#answers').hide();
+          $('#question').hide();
+          $('#timer').hide();
+
+          $('#results').html(html);
+          $('#results').show();
+
+    //    setTimeout(function(){
+    //    }, timeResult);
+
     }
 
 }
