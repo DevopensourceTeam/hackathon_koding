@@ -1,6 +1,9 @@
 var socket = io.connect();
 
 $( document ).ready(function() {
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', '/sounds/intro.mp3');
+    audioElement.setAttribute('autoplay',true);
 
     socket.emit('newsession', channel);
 

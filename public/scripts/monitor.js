@@ -9,9 +9,17 @@ var remainingTime;
 var endGame = false;
 var reducePoints = 500;
 var multPoint = 100;
+var audioSucces = document.createElement('audio');
+var audioNew = document.createElement('audio');
+var audioClock = document.createElement('audio');
 
 $( document ).ready(function() {
     socket.emit('addmonitor', channel);
+
+    audioSucces.setAttribute('src', '/sounds/correctanswere.wav');
+    audioNew.setAttribute('src', '/sounds/newanswere.wav');
+    audioClock.setAttribute('src', '/sounds/clock.wav');
+
     startGame();
 });
 
@@ -89,6 +97,8 @@ function nextQuestion(questionCount){
 
     remainingTime=timeQuestion;
 
+    audioNew.play();
+
     $('#timer span').text(remainingTime/1000);
 
     console.log(timeQuestion);
@@ -104,6 +114,9 @@ function nextQuestion(questionCount){
             clearInterval(intervalQuestion);
             showCorrectAnswere();
         }else{
+            if(remainingTime==3000){
+                audioClock.play();
+            }
             var percent = ((remainingTime/1000)*100)/(timeQuestion/1000);
             $('#timer span').text(remainingTime/1000);
             $('.progress-type span').text(remainingTime/1000);
@@ -132,6 +145,7 @@ function nextQuestion(questionCount){
 function showCorrectAnswere(){
     socket.emit('lockallcontroller', 1);
 
+    audioSucces.play();
     $('#answer'+currentQuestion.correct).addClass('correct');
 
     // Send points status to user
