@@ -5,16 +5,46 @@ block content
   script.
         var channel = '#{hash}';
         var questions = !{JSON.stringify(questions)};
-  div#timer
-    span
-  div#question
-    span
-  div#answers
-    div#answer1.answer
-        span
-    div#answer2.answer
-        span
-    div#answer3.answer
-        span
-    div#answer4.answer
-        span
+  div.container
+    div.row
+      div.col-md-12
+        div.progress
+          div(aria-valuenow='100', aria-valuemin='100', aria-valuemax='100', role='progressbar', style='width: 100%;').progress-bar
+            span.sr-only 100% Complete
+          span.progress-type Time left 
+            span
+          span.progress-completed 100%
+    div.row
+      div.col-md-12
+        div.box
+          div.icon
+            div.image
+              i.fa.fa-question
+            div.info
+              div#question
+                span.title Pregunta a responder
+          div.space
+    div.row.form-group
+      div.col-md-6
+        div.input-group
+          span.input-group-addon.blue
+            span.glyphicon.glyphicon-star
+          div#answer1.form-control.answer
+      div.col-md-6
+        div.input-group
+          span.input-group-addon.orange
+            span.glyphicon.glyphicon-star
+          div#answer2.form-control.answer
+
+    div.row.form-group
+      div.col-md-6
+        div.input-group
+          span.input-group-addon.green
+            span.glyphicon.glyphicon-star
+          div#answer3.form-control.answer
+      div.col-md-6
+        div.input-group
+          span.input-group-addon.red
+            span.glyphicon.glyphicon-star
+          div#answer4.form-control.answer
+

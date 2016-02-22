@@ -95,7 +95,12 @@ function nextQuestion(questionCount){
     $('#timer span').text(remainingTime/1000);
 
     console.log(timeQuestion);
-
+    
+    $('.progress-type span').text(timeQuestion/1000);
+    $('.progress-bar').width('100%');
+    $('.progress-completed, .sr-only').text('100%');
+    $('.progress-bar').attr('aria-valuenow', 100);
+        
     var intervalQuestion = setInterval(function(){
         remainingTime = remainingTime-1000;
         if(remainingTime<0){
@@ -104,6 +109,12 @@ function nextQuestion(questionCount){
         }else{
             var percent = ((remainingTime/1000)*100)/(timeQuestion/1000);
             $('#timer span').text(remainingTime/1000);
+            $('.progress-type span').text(remainingTime/1000);
+
+
+            $('.progress-bar').width(percent+'%');
+            $('.progress-completed, .sr-only').text(percent+'%');
+            $('.progress-bar').attr('aria-valuenow', percent);
         }
     }, 1000);
 
@@ -112,10 +123,10 @@ function nextQuestion(questionCount){
     startTime = (new Date).getTime() / 1000;
     currentQuestion = questions[questionCount];
     $('#question span').text(questions[questionCount].question);
-    $('#answer1 span').text(questions[questionCount].answers.option1);
-    $('#answer2 span').text(questions[questionCount].answers.option2);
-    $('#answer3 span').text(questions[questionCount].answers.option3);
-    $('#answer4 span').text(questions[questionCount].answers.option4);
+    $('#answer1').text(questions[questionCount].answers.option1);
+    $('#answer2').text(questions[questionCount].answers.option2);
+    $('#answer3').text(questions[questionCount].answers.option3);
+    $('#answer4').text(questions[questionCount].answers.option4);
 
     socket.emit('sendanswers', questions[questionCount].answers);
 }
