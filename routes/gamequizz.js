@@ -33,18 +33,6 @@ router.get('/', function(req, res, next) {
                 return false;
             }
 
-          //   console.log("punctuation process");
-          //   console.log(socket.username);
-          //
-          //
-          //
-          //   punctuation[socket.username] = 100;
-          //   socket.username['punctuation'] = 100;
-          //
-          //   console.log(punctuation);
-          //
-          //   console.log(socket.username.punctuation);
-
             console.log('SCK: event sendoption');
             console.log(socket.username);
             console.log(data);

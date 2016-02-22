@@ -132,7 +132,7 @@ $( document ).ready(function() {
         $("#waiting").hide();
         $("#game").hide();
         $('span#position').text(positionRank);
-        $('span#points').text("points: "+points);
+        $('span#points').text("Points: "+points);
         $("#endgame").show();
     });
 

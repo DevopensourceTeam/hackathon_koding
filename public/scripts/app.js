@@ -6,6 +6,7 @@ $( document ).ready(function() {
 
 
     socket.on('updateusers', function(_users){
+        $('.no-players h1').hide();
     console.log('SCK: listen client ');
     console.log(_users);
 
@@ -21,7 +22,7 @@ $( document ).ready(function() {
       console.log(index);
       console.log(value.avatar);
 
-      var html = '<div class="col-md-3 user"><img src="/images/avatars/avatar_'+value.avatar+'.png"/><span class="user-name">'+value.username+'</span></div>';
+      var html = '<div class="col-md-3 user"><div><img src="/images/avatars/avatar_'+value.avatar+'.png"/><span class="user-name">'+value.username+'</span></div></div>';
       $('#users').append(html);
 
     });

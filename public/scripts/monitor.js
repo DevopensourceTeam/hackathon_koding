@@ -7,7 +7,7 @@ var timeResult  = 5000;
 var totalTime = timeQuestion+timeResult;
 var remainingTime;
 var endGame = false;
-var reducePoints = 1000;
+var reducePoints = 500;
 var multPoint = 100;
 
 
