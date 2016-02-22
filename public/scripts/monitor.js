@@ -165,8 +165,6 @@ function showCorrectAnswere(){
     // Send points status to user
     socket.emit('getpoints');
 
-    console.log("show correct answere");
-
     if(endGame){
         setTimeout(function(){ socket.emit('endgame'); },timeResult);
     }

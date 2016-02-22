@@ -5,9 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 
     var qr = require('qr-image');
-
     var hash = Math.random().toString(36).slice(-4);
-  //  hash = 'flxr';
     hash.toLowerCase();
 
     var hostname = req.headers.host;
@@ -78,16 +76,9 @@ router.get('/', function(req, res, next) {
 
             }
 
-            //socket.username['punctuation']  = points;
-            //  console.log(socket.username.punctuation);
-
             console.log(punctuation);
-
             console.log('SCK: event sendpoints');
-
             console.log(data);
-
-            //socket.broadcast.to(socket.room).emit('updateoption',  socket.username, data);
         });
 
         // Send points to monitor
@@ -120,14 +111,12 @@ router.get('/', function(req, res, next) {
             console.log('SCK: connect user');
             console.log(data);
 
-            // vars
             socket.username             = data.username;
             socket.room                 = data.room;
             usernames[socket.username]  = {avatar:data.avatar, username:socket.username};
 
             console.log(usernames);
 
-            // join user to room
             socket.join(socket.room);
             socket.emit('updatecommand', 'SERVER', 'you have connected');
             socket.broadcast.to(hash).emit('updatecommand', 'SERVER', socket.username + ' has connected to this room');
@@ -136,7 +125,6 @@ router.get('/', function(req, res, next) {
 
             // Count total users
             countUsers++;
-
             console.log('num users: '+countUsers);
 
             // If one user enable play
@@ -191,7 +179,7 @@ router.get('/', function(req, res, next) {
     res.render('gamequizz', { title: 'Game Quizz', urlct: urlct,url:url ,qr:qr_str,hash:hash,domainurl:domainurl});
 });
 
-// Route /game-quizz/ct/ia4i
+// Route /game-quizz/ct/:hash
 router.get('/ct/:hash', function(req, res, next) {
     console.log('Route controller');
     var hash = req.params.hash;
@@ -207,7 +195,7 @@ router.get('/ct/:hash', function(req, res, next) {
     res.render('controller', { title: 'Controller', hash: hash, avatar:avatar});
 });
 
-// Route /game-quizz/ia4i
+// Route /game-quizz/:hash
 router.get('/:hash', function(req, res, next) {
 
     console.log('Monitor controller');

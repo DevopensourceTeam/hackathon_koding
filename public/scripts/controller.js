@@ -144,7 +144,6 @@ $( document ).ready(function() {
             audioElement.play();
         }
 
-        console.log(data);
         $('div#button-1 span').text(data.option1);
         $('div#button-2 span').text(data.option2);
         $('div#button-3 span').text(data.option3);
