@@ -136,17 +136,23 @@ $( document ).ready(function() {
                 if(currentPoints>0){
                     $('#splashpoint').removeClass('error');
                     $('#pointresult').text("+"+currentPoints);
+                    $('#game').hide();
+                    $("#waiting").hide();
                     $('#splashpoint').show();
                 }else{
                     $('#splashpoint').addClass('error');
                     $('#pointresult').text(currentPoints);
+                    $('#game').hide();
+                    $("#waiting").hide();
                     $('#splashpoint').show();
                 }
             }
 
             lockcontroller()
         }else{
+            $("#waiting").hide();
             $('#splashpoint').hide();
+            $('#game').show();
             unlockcontroller();
         }
     });
