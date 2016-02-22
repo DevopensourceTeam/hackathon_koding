@@ -107,8 +107,12 @@ body{
   padding-top: 40px;
 }
 
+.features-list-img{
+  padding-top: 20px;
+}
+
 .img-works {
-  width: 90%;
+  width: 75%;
 }
 
 .title-works{
