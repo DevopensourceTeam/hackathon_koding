@@ -182,7 +182,7 @@ router.get('/', function(req, res, next) {
             }
 
             console.log("SERVER: end game");
-            socket.broadcast.to(socket.room).emit('finalizemonitor', 'prueba');
+            socket.emit('finalizemonitor', {'punctuation':punctuation});
             socket.broadcast.to(socket.room).emit('endgame', value);
 
         });

@@ -12,6 +12,7 @@ var multPoint = 100;
 var audioSucces = document.createElement('audio');
 var audioNew = document.createElement('audio');
 var audioClock = document.createElement('audio');
+var rank;
 
 $( document ).ready(function() {
     socket.emit('addmonitor', channel);
@@ -90,6 +91,17 @@ function startGame(){
         answers.push({username:username,option:data,time:time});
         console.log(answers);
     });
+
+    socket.on('finalizemonitor', function(data){
+        rank = [];
+
+        $.each(data.punctuation,function(index, value){
+            rank.push({user:index,points:value});
+        });
+
+        rank = rank.sort(function(a, b){return b.points-a.points});
+        displayResults()
+    });
 }
 
 function nextQuestion(questionCount){
@@ -154,32 +166,24 @@ function showCorrectAnswere(){
     console.log("show correct answere");
 
     if(endGame){
-
-          socket.on('finalizemonitor', function(data){
-              console.log('finalizemonitor');
-              console.log(data);
-          });
-
-          socket.emit('endgame');
-
-          console.log("end game");
-
-          var html = '<table class="table table-hover"><thead><tr><th>#</th><th>Username</th><th>Points</th></tr></thead><tbody>';
-
-          for(var i = 0; i < 5; i++){
-              html = html + '<tr class=""><td>'+i+'</td><td>username'+i+'</td><td>1000'+i+'</td></tr>';
-          }
-
-          html = html + '</tbody>';
-          html = html + '</table>';
-
-          $('.questionrow').hide();
-          $('#results').html(html);
-          $('#results').show();
-
-    //    setTimeout(function(){
-    //    }, timeResult);
-
+        setTimeout(function(){ socket.emit('endgame'); },timeResult);
     }
 
+}
+
+
+function displayResults(){
+    var html = '<table class="table table-hover"><thead><tr><th>#</th><th>Username</th><th>Points</th></tr></thead><tbody>';
+
+    for(var i = 0; i < rank.length; i++){
+        html = html + '<tr class=""><td>'+(i+1)+'</td><td>'+rank[i].user+'</td><td>'+rank[i].points+'</td></tr>';
+    }
+
+    html = html + '</tbody>';
+    html = html + '</table>';
+
+    $('.questionrow').hide();
+    $('#results-container').show();
+
+    $('#results').html(html);
 }
