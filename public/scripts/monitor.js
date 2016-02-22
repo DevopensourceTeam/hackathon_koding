@@ -12,6 +12,7 @@ var multPoint = 100;
 var audioSucces = document.createElement('audio');
 var audioNew = document.createElement('audio');
 var audioClock = document.createElement('audio');
+var audioRank = document.createElement('audio');
 var rank;
 
 $( document ).ready(function() {
@@ -20,6 +21,7 @@ $( document ).ready(function() {
     audioSucces.setAttribute('src', '/sounds/correctanswere.wav');
     audioNew.setAttribute('src', '/sounds/newanswere.wav');
     audioClock.setAttribute('src', '/sounds/clock.wav');
+    audioRank.setAttribute('src', '/sounds/rank.mp3');
 
     startGame();
 });
@@ -173,6 +175,7 @@ function showCorrectAnswere(){
 
 
 function displayResults(){
+    audioRank.play();
     var html = '<table class="table table-hover"><thead><tr><th>#</th><th>Username</th><th>Points</th></tr></thead><tbody>';
 
     for(var i = 0; i < rank.length; i++){

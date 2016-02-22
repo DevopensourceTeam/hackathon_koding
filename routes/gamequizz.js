@@ -224,7 +224,7 @@ router.get('/:hash', function(req, res, next) {
     var json = JSON.parse(require('fs').readFileSync(path.join(__dirname,'..', 'questions/questions.json'), 'utf8'));
     var questions = json.questions;
     questions = shuffle(questions);
-    questions = questions.slice(0, 10);
+    questions = questions.slice(0, 5);
     res.render('monitor', { title: 'Play', hash: hash, questions:questions});
 });
 
