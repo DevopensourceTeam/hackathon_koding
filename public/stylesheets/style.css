@@ -37,3 +37,17 @@ a {
 	font-size: 3em;
     padding-left: 1em;
 }
+
+#code-room,#gotoroom{
+    width: 100%;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 800px) {
+    body {
+        padding: 20px;
+    }
+
+
+}

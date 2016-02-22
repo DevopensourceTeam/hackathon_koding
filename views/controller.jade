@@ -22,10 +22,10 @@ html
                 input#username(placeholder="Enter a username")
                 br
                 button#sendusername.btn.btn-lg.btn-primary Join
-        div#waiting.hidden-screen
+        div#waiting(style="display: none;")
             div
                 span You have already been added to the room, waiting for the game start.
-        div#game.hidden-screen
+        div#game(style="display: none;")
             div#header
                 img(src='/images/avatars/avatar_#{avatar}.png')
                 div
@@ -37,11 +37,11 @@ html
                     span
                 div#button-2.quizzbutton.orange
                     span
-                div#button-3.quizzbutton.green
+                div#button-3.quizzbutton.purple
                     span
                 div#button-4.quizzbutton.red
                     span
-        div#endgame.hidden-screen
+        div#endgame(style="display: none;")
             div
                 span#position
                 br

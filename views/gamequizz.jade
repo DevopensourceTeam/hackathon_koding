@@ -59,12 +59,13 @@ block content
                         strong Play game Option 2
                     div.panel-body
                         input#code-room(placeholder='code room')
-                        button#gotoroom Start to play
+                        br
+                        button#gotoroom.btn.btn-lg.btn-primary Start to play
 
-        div.row
+        div.row.visible-lg
             h1.text-center Players
             div#users
-        div.row
+        div.row.visible-lg
             div.col-md-12.text-center
                 button#gotoplay(onclick='location.href = \'#{url}\';')(disabled="disabled").btn.btn-lg.btn-primary Start to play
 

@@ -39,9 +39,7 @@ html, body, #game, #init, #waiting, #endgame{
     vertical-align: middle;
 }
 
-.hidden-screen{
-    display: none;
-}
+
 
 
 #header{
@@ -114,7 +112,7 @@ html, body, #game, #init, #waiting, #endgame{
 }
 
 .blue.lock{
-    background-color: #003973;
+    background-color: #032548;
 }
 
 .blue.lock.answered{
@@ -126,23 +124,23 @@ html, body, #game, #init, #waiting, #endgame{
 }
 
 .orange.lock{
-    background-color: #BF7C05;
+    background-color: #5F3D03;
 }
 
 .orange.lock.answered{
     background-color: #FFAF21;
 }
 
-.green{
-    background-color: #009632;
+.purple{
+    background-color: #7406B9;
 }
 
-.green.lock{
-    background-color: #017929;
+.purple.lock{
+    background-color: #210135;
 }
 
-.green.lock.answered{
-    background-color: #01C342;
+.purple.lock.answered{
+    background-color: #A30FFF;
 }
 
 .red{
@@ -150,7 +148,7 @@ html, body, #game, #init, #waiting, #endgame{
 }
 
 .red.lock{
-    background-color: #9E0101;
+    background-color: #310000;
 }
 
 .red.lock.answered{
