@@ -118,3 +118,19 @@ body{
 .image-logo-footer{
   margin-right: 80px;
 }
+
+.title-game{
+  font-size: 40px;
+}
+
+.image-game{
+  margin-top: 20px;
+}
+
+.content-games{
+  margin-top: 60px;
+}
+
+.block-footer{
+  margin-bottom: 10px;
+}
