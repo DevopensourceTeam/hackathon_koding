@@ -10,6 +10,7 @@ a {
 
 .correct{
     background-color: #5cb85c;
+    color: white;
 }
 
 .panel-heading {
@@ -94,6 +95,8 @@ a {
 .box > .icon > .info {
 	padding: 2.5em;
 }
+
+#question .title { font-size: 3em; }
 
 /*
 	Questions	
