@@ -3,6 +3,7 @@ var username = "";
 var game = {};
 var positionRank;
 var points = 0 ;
+var currentPoints = "";
 
 $( document ).ready(function() {
 
@@ -120,10 +121,32 @@ $( document ).ready(function() {
 
     });
 
+    socket.on('pointsresult', function (data) {
+        if(data.username==username){
+            currentPoints=data.points;
+        }
+    });
+
+
+
     socket.on('lockcontroller', function (data) {
         if(data){
+
+            if(!isNaN(currentPoints) && currentPoints!=""){
+                if(currentPoints>0){
+                    $('#splashpoint').removeClass('error');
+                    $('#pointresult').text("+"+currentPoints);
+                    $('#splashpoint').show();
+                }else{
+                    $('#splashpoint').addClass('error');
+                    $('#pointresult').text(currentPoints);
+                    $('#splashpoint').show();
+                }
+            }
+
             lockcontroller()
         }else{
+            $('#splashpoint').hide();
             unlockcontroller();
         }
     });
@@ -153,6 +176,7 @@ $( document ).ready(function() {
 });
 
 function unlockcontroller(){
+    currentPoints = "";
     $(".quizzbutton").removeClass('lock');
     $(".quizzbutton").removeClass('answered');
 

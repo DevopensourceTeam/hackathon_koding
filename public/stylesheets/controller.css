@@ -154,3 +154,29 @@ html, body, #game, #init, #waiting, #endgame{
 .red.lock.answered{
     background-color: #FF0101;
 }
+
+#splashpoint{
+    display: table;
+    width: 100%;
+    height: 100%;
+    background-color: #34A92C;
+    position: absolute;
+    top: 0;
+    color: #fff;
+    font-size: 3em;
+    text-align: center;
+}
+
+#splashpoint div{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#splashpoint.error{
+    width: 100%;
+    height: 100%;
+    background-color: #A01B1B;
+    position: absolute;
+    top: 0;
+    color: #fff;
+}

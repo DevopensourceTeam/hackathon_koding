@@ -56,6 +56,9 @@ router.get('/', function(req, res, next) {
 
                 console.log("reduce points to"+ username);
 
+                socket.broadcast.to(socket.room).emit('pointsresult', {points:-points,username:username});
+
+
                 if (isNaN(punctuation[username])) {
                     console.log("is nan");
                     punctuation[username] = 0;
@@ -68,6 +71,7 @@ router.get('/', function(req, res, next) {
                 }
 
             }else {
+              socket.broadcast.to(socket.room).emit('pointsresult', {points:points,username:username});
               if(isNaN(punctuation[username])){
                 punctuation[username] = points;
               }else{
